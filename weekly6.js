@@ -158,10 +158,10 @@ lampShade.position.set(1.5, 2.18, 1.15);
 scene.add(lampShade);
 box("lamp stem", [0.09, 0.8, 0.09], [1.5, 1.68, 1.15], materials.metal);
 
-const ambientLight = new THREE.HemisphereLight(0xe2f1ff, 0x75614c, 1.45);
+const ambientLight = new THREE.HemisphereLight(0xe2f1ff, 0x75614c, 0.5);
 scene.add(ambientLight);
 
-const sunlight = new THREE.DirectionalLight(0xffe2b6, 3.1);
+const sunlight = new THREE.DirectionalLight(0xffe2b6, 0.5);
 sunlight.position.set(-5, 10, 7);
 sunlight.castShadow = true;
 sunlight.shadow.mapSize.set(2048, 2048);
@@ -172,6 +172,7 @@ sunlight.shadow.camera.bottom = -4;
 scene.add(sunlight);
 
 const lampGlow = new THREE.PointLight(0xffc56f, 28, 5);
+lampGlow.color.set(0xf5a627);
 lampGlow.position.set(1.5, 2.1, 1.15);
 scene.add(lampGlow);
 
