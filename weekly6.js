@@ -115,7 +115,7 @@ for (const x of [2.1, 3.55]) {
     box("console handle", [0.22, 0.045, 0.07], [x, 0.49, -3.825], materials.metal);
 }
 box("television frame", [3.5, 2.15, 0.16], [2.95, 2.42, -4.43], materials.metal);
-const screenMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+const screenMaterial = new THREE.MeshBasicMaterial({ color: 0x3600a3 });
 box("television screen", [3.28, 1.92, 0.025], [2.95, 2.43, -4.335], screenMaterial, false);
 box("tv stand neck", [0.16, 0.35, 0.16], [2.95, 1.32, -4.34], materials.metal);
 box("tv stand foot", [0.9, 0.08, 0.38], [2.95, 1.13, -4.32], materials.metal);
@@ -158,10 +158,10 @@ lampShade.position.set(1.5, 2.18, 1.15);
 scene.add(lampShade);
 box("lamp stem", [0.09, 0.8, 0.09], [1.5, 1.68, 1.15], materials.metal);
 
-const ambientLight = new THREE.HemisphereLight(0xe2f1ff, 0x75614c, 0.0);
+const ambientLight = new THREE.HemisphereLight(0xe2f1ff, 0x75614c, 0.01);
 scene.add(ambientLight);
 
-const sunlight = new THREE.DirectionalLight(0xffe2b6, 0.0);
+const sunlight = new THREE.DirectionalLight(0xffe2b6, 0.1);
 sunlight.position.set(-5, 10, 7);
 sunlight.castShadow = true;
 sunlight.shadow.mapSize.set(2048, 2048);
@@ -171,25 +171,37 @@ sunlight.shadow.camera.top = 12;
 sunlight.shadow.camera.bottom = -4;
 scene.add(sunlight);
 
-const lampGlow = new THREE.PointLight(0xffc61a, 28, 7);
+const lampGlow = new THREE.PointLight(0xffc61a, 14, 5);
 lampGlow.position.set(1.5, 2.1, 1.15);
 scene.add(lampGlow);
 
-const tvLight = new THREE.PointLight(0x88aaff, 10, 8);
+const tvLight = new THREE.PointLight(0x661aff, 15, 10); 
 tvLight.position.set(2.95, 2, -3.5);
 scene.add(tvLight);
 
-const lightning = new THREE.PointLight(0xffffff, 0, 30);
-lightning.position.set(3, 2, 3 );
-scene.add(lightning);
+const ledLight = new THREE.PointLight(0x9b080b, 10, 30);
+ledLight.position.set(-5, 8, 4);
+scene.add(ledLight);
 
-const windowLight = new THREE.SpotLight(0xffffff, 55, 18, 0.6, 0.65, 2);
-windowLight.position.set(-2, 2, -6);
-windowLight.target.position.set(-1.5, 1, 3);
-windowLight.castShadow = true;
-windowLight.shadow.mapSize.set(1024, 1024);
-scene.add(windowLight);
-scene.add(windowLight.target);
+const ledLight2 = new THREE.PointLight(0x9b080b, 10, 30);
+ledLight2.position.set(-5, 8, 0);
+scene.add(ledLight2);
+
+const ledLight3 = new THREE.PointLight(0x9b080b, 10, 30);
+ledLight3.position.set(-5, 8, -4);
+scene.add(ledLight3);
+
+const ledLight4 = new THREE.PointLight(0x9b080b, 10, 30);
+ledLight4.position.set(5, 8, 4);
+scene.add(ledLight4);
+
+const ledLight5 = new THREE.PointLight(0x9b080b, 10, 30);
+ledLight5.position.set(5, 8, 0);
+scene.add(ledLight5);
+
+const ledLight6 = new THREE.PointLight(0x9b080b, 10, 30);
+ledLight6.position.set(5, 8, -4);
+scene.add(ledLight6);
 
 
 window.addEventListener("resize", () => {
@@ -203,8 +215,8 @@ function animate() {
     controls.update();
     renderer.render(scene, camera);
 
-    lightning.intensity = Math.random() > 0.98
-    ? 20
+    tvLight.intensity = Math.random() > 0.98
+    ? 15
     : 0;
 }
 
