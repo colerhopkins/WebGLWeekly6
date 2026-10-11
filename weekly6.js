@@ -171,13 +171,25 @@ sunlight.shadow.camera.top = 12;
 sunlight.shadow.camera.bottom = -4;
 scene.add(sunlight);
 
-const lampGlow = new THREE.PointLight(0x1a0ff5, 28, 7);
+const lampGlow = new THREE.PointLight(0xffc61a, 28, 7);
 lampGlow.position.set(1.5, 2.1, 1.15);
 scene.add(lampGlow);
 
 const tvLight = new THREE.PointLight(0x88aaff, 10, 8);
 tvLight.position.set(2.95, 2, -3.5);
 scene.add(tvLight);
+
+const lightning = new THREE.PointLight(0xffffff, 0, 30);
+lightning.position.set(3, 2, 3 );
+scene.add(lightning);
+
+const windowLight = new THREE.SpotLight(0xffffff, 55, 18, 0.6, 0.65, 2);
+windowLight.position.set(-2, 2, -6);
+windowLight.target.position.set(-1.5, 1, 3);
+windowLight.castShadow = true;
+windowLight.shadow.mapSize.set(1024, 1024);
+scene.add(windowLight);
+scene.add(windowLight.target);
 
 
 window.addEventListener("resize", () => {
@@ -190,6 +202,10 @@ function animate() {
     requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
+
+    lightning.intensity = Math.random() > 0.98
+    ? 20
+    : 0;
 }
 
 animate();
