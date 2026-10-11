@@ -80,9 +80,9 @@ box("back wall window header", [6.15, 2.2, 0.24], [-1.5, 6.9, -5], materials.wal
 box("back wall window sill", [6.15, 1.05, 0.24], [-1.5, 0.525, -5], materials.wall);
 
 // A soft blue daytime landscape sits beyond the openings in the rear wall.
-const sky = new THREE.MeshBasicMaterial({ color: 0x83c8d7 });
-const distantHill = new THREE.MeshBasicMaterial({ color: 0x8ea98a });
-const nearHill = new THREE.MeshBasicMaterial({ color: 0x597d5b });
+const sky = new THREE.MeshBasicMaterial({ color: 0x000000 });
+const distantHill = new THREE.MeshBasicMaterial({ color: 0x104d0e });
+const nearHill = new THREE.MeshBasicMaterial({ color: 0x92e08 });
 box("outside sky", [14, 12, 0.12], [0, 5, -5.8], sky, false);
 box("distant landscape", [14, 2.3, 0.18], [0, 1.65, -5.65], distantHill, false);
 box("meadow", [14, 1.2, 0.18], [0, 0.15, -5.6], nearHill, false);
@@ -115,7 +115,7 @@ for (const x of [2.1, 3.55]) {
     box("console handle", [0.22, 0.045, 0.07], [x, 0.49, -3.825], materials.metal);
 }
 box("television frame", [3.5, 2.15, 0.16], [2.95, 2.42, -4.43], materials.metal);
-const screenMaterial = new THREE.MeshBasicMaterial({ color: 0x172a33 });
+const screenMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
 box("television screen", [3.28, 1.92, 0.025], [2.95, 2.43, -4.335], screenMaterial, false);
 box("tv stand neck", [0.16, 0.35, 0.16], [2.95, 1.32, -4.34], materials.metal);
 box("tv stand foot", [0.9, 0.08, 0.38], [2.95, 1.13, -4.32], materials.metal);
@@ -158,10 +158,10 @@ lampShade.position.set(1.5, 2.18, 1.15);
 scene.add(lampShade);
 box("lamp stem", [0.09, 0.8, 0.09], [1.5, 1.68, 1.15], materials.metal);
 
-const ambientLight = new THREE.HemisphereLight(0xe2f1ff, 0x75614c, 0.5);
+const ambientLight = new THREE.HemisphereLight(0xe2f1ff, 0x75614c, 0.0);
 scene.add(ambientLight);
 
-const sunlight = new THREE.DirectionalLight(0xffe2b6, 0.5);
+const sunlight = new THREE.DirectionalLight(0xffe2b6, 0.0);
 sunlight.position.set(-5, 10, 7);
 sunlight.castShadow = true;
 sunlight.shadow.mapSize.set(2048, 2048);
@@ -171,10 +171,14 @@ sunlight.shadow.camera.top = 12;
 sunlight.shadow.camera.bottom = -4;
 scene.add(sunlight);
 
-const lampGlow = new THREE.PointLight(0xffc56f, 28, 5);
-lampGlow.color.set(0xf5a627);
+const lampGlow = new THREE.PointLight(0x1a0ff5, 28, 7);
 lampGlow.position.set(1.5, 2.1, 1.15);
 scene.add(lampGlow);
+
+const tvLight = new THREE.PointLight(0x88aaff, 10, 8);
+tvLight.position.set(2.95, 2, -3.5);
+scene.add(tvLight);
+
 
 window.addEventListener("resize", () => {
     camera.aspect = window.innerWidth / window.innerHeight;
